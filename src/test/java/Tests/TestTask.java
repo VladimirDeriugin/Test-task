@@ -18,7 +18,7 @@ public class TestTask {
     
     @BeforeClass
     public static void Setup() {
-        System.setProperty("webdriver.chrome.driver", "D:\\Work\\untitled\\src\\test\\resources\\drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\drivers\\chromedriver.exe");
     }
     
     @Before
