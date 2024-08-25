@@ -138,7 +138,7 @@ public class TestTask {
     }
     
     @Test
-    public void scenarioTwo() throws InterruptedException {
+    public void scenarioTwo() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         
         //▪ Using navigation menu, find women pants section.
