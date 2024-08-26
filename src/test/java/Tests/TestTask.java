@@ -27,6 +27,7 @@ public class TestTask {
         driver = new ChromeDriver(options);
         driver.get("https://magento.softwaretestingboard.com/");
         driver.manage().window().maximize();
+        ((JavascriptExecutor) driver).executeScript("document.body.style.zoom = '100%'");
     }
     
     @After
@@ -59,8 +60,8 @@ public class TestTask {
         select.selectByVisibleText("Estado de México");
         driver.findElement(By.name("postcode")).sendKeys("11001");
         driver.findElement(By.name("telephone")).sendKeys("5553428400");
-        WebElement shipping = driver.findElement(By.xpath("//td[text()='Flat Rate']"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[text()='Flat Rate']")));
+        WebElement shipping = driver.findElement(By.xpath("//td[text()='Flat Rate']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", shipping);
         shipping.click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Next']")));
@@ -101,6 +102,7 @@ public class TestTask {
         Assert.assertEquals(count, Integer.parseInt(limiterValue));
         
         //▪ Select “Frankie Sweatshirt” and open its details.
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), 'Frankie Sweatshirt')]")));
         WebElement frankieSweatshirt = driver.findElement(By.xpath("//a[contains(text(), 'Frankie Sweatshirt')]"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", frankieSweatshirt);
         frankieSweatshirt.click();
