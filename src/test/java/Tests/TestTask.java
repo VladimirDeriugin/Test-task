@@ -16,11 +16,12 @@ public class TestTask {
     public static ChromeDriver driver;
     public static ChromeOptions options = new ChromeOptions();
     
+    // This method sets up the ChromeDriver before all tests
     @BeforeClass
     public static void Setup() {
         System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\drivers\\chromedriver.exe");
     }
-    
+    // This method runs before each test, it opens the browser and navigates to the website
     @Before
     public void before() {
         options.addArguments("--disable-search-engine-choice-screen");
@@ -30,6 +31,7 @@ public class TestTask {
         ((JavascriptExecutor) driver).executeScript("document.body.style.zoom = '100%'");
     }
     
+    // This method runs after each test, it closes the browser
     @After
     public void after() {
         driver.close();
@@ -39,6 +41,7 @@ public class TestTask {
 //    public static void afterClass() {
 //        driver.quit();
 //    }
+    // This method fills out the checkout form
     public void proceedCheckout() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout-loader")));
@@ -197,6 +200,7 @@ public class TestTask {
         driver.findElement(By.xpath("//button[@class='action-primary action-accept']")).click();
         
         //▪ Add product to the cart from suggested products.
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='View and Edit Cart']")));
         driver.findElement(By.xpath("//span[text()='View and Edit Cart']")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Proceed to Checkout']")));
         WebElement rope = driver.findElement(By.xpath("//a[contains(text(),'Zing Jump Rope')]/../a/../../div/div/form/button"));
